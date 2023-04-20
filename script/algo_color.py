@@ -52,16 +52,16 @@ def compare_keys_values(dictionary: dict) -> str:
     for key, value in dictionary.items():
         if key == value:
             new_key: str = translate_word(key, "fr", "en")
-            return new_key
+            return print(new_key)
 
-    return "No value found"
+    return print("No value found")
 
 
-def algo_color(dictionary_card: dict):
+def algo_color(dictionary_card: dict) -> str:
     """
     This function allows you to solve the colour challenge
     :param dictionary_card: the dictionary from the challenge card selected
     :return: The word or key of the element that is identical in both dictionaries
     """
     dictionary_translated = translate_dictionary_keys(dictionary_card)
-    print(compare_keys_values(dictionary_translated))
+    return compare_keys_values(dictionary_translated)
