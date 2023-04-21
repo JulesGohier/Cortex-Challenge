@@ -15,7 +15,7 @@ def extend_list(list_of_lists: list) -> list:
 
 def less_common(cnt: list):
     """
-    Function that return the less common element of a counter list (cnt)
+    Function that return the less common element of a counter dict (cnt)
     :return: least_common element
     """
     least_common = cnt.most_common()[-1]
@@ -23,7 +23,12 @@ def less_common(cnt: list):
 
 
 def algo_frequency(card_list: list):
-    cnt = Counter()
+    """
+    Function which groups all the words and their occurrence in a dict (cnt) and return its least common element
+    :param card_list: a list of lists which contains the words (game_data)
+    :return:
+    """
+    cnt: dict = Counter()
     complete_list = extend_list(card_list)
     for word in complete_list:
         cnt[word] += 1

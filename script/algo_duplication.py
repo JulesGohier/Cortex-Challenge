@@ -15,7 +15,12 @@ def extend_list(list_of_lists: list) -> list:
 
 
 def frequency(card_list: list):
-    cnt = Counter()
+    """
+    Function which groups all the words and their occurrence in a dict (cnt)
+    :param card_list: a list of lists which contains the words (game_data)
+    :return: cnt, the dictionary referred to above
+    """
+    cnt: dict = Counter()
     complete_list = extend_list(card_list)
     for word in complete_list:
         cnt[word] += 1
@@ -24,10 +29,10 @@ def frequency(card_list: list):
 
 def algo_duplication(card_list: list):
     """
-    Function that return the duplicate element  of a counter list (cnt)
-    :return: least_common element
+    Function that return the duplicate element (an element which appears exactly 2 times) of a counter dict (cnt)
+    :return: duplicate element
     """
     cnt = frequency(card_list)
-    for animal, occurence in cnt.items():
-        if occurence == 2:
-            return print(animal)
+    for word, occurrence in cnt.items():
+        if occurrence == 2:
+            return print(word)
