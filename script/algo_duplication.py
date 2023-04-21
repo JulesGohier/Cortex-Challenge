@@ -14,19 +14,20 @@ def extend_list(list_of_lists: list) -> list:
     return unique_list
 
 
-def duplication(cnt: list):
-    """
-    Function that return the duplicate element  of a counter list (cnt)
-    :return: least_common element
-    """
-    for animal, occurence in cnt:
-        if occurence == 2:
-            return print(animal)
-
-
-def algo_frequency(card_list: list):
+def frequency(card_list: list):
     cnt = Counter()
     complete_list = extend_list(card_list)
     for word in complete_list:
         cnt[word] += 1
-    duplication(cnt)
+    return cnt
+
+
+def algo_duplication(card_list: list):
+    """
+    Function that return the duplicate element  of a counter list (cnt)
+    :return: least_common element
+    """
+    cnt = frequency(card_list)
+    for animal, occurence in cnt.items():
+        if occurence == 2:
+            return print(animal)

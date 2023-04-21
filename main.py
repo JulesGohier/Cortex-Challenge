@@ -3,9 +3,11 @@ from script import algo_color
 from script import algo_calculation
 from script import algo_frequency
 from script import algo_missing
+from script import algo_duplication
 
 
 if __name__ == '__main__':
+    """
     # challenge 1 -> color
     game_type_1: str = ""
     game_data1_1: dict = dict()
@@ -15,7 +17,7 @@ if __name__ == '__main__':
     game_type_1, game_data1_1, game_data1_2 = basic_fonction.recovery_data_card(card)
     print("/", game_type_1, " : ")
     algo_color.algo_color(game_data1_1)
-
+    """
 
     # challenge 3 -> calculation
     game_type_3: str = ""
@@ -56,7 +58,7 @@ if __name__ == '__main__':
 
     game_type_7, game_data7_1, game_data7_2 = basic_fonction.recovery_data_card(card)
     print("/", game_type_7, " : ")
-    algo_frequency.algo_frequency(game_data7_1)
+    algo_duplication.algo_duplication(game_data7_1)
 
 
 
