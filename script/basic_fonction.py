@@ -1,5 +1,6 @@
 """ File to initialize all the values for the functions """
 import json
+import time
 
 
 def open_json_card(file_name: str):
@@ -34,3 +35,24 @@ def recovery_data_card(card: dict, game_type: str, game_data1, game_data2):
     else:
         game_data2 = ""
     return game_type, game_data1, game_data2
+
+
+def calculate_time_execution(algorithm, game_data1, nb_iteration: int):
+    """
+    Function to calculate the average execution time for a number of iterations
+    :param algorithm: Algorithm to be tested
+    :param game_data1: Parameter of the agorithm
+    :param nb_iteration: Number of test iterations
+    :return: Average time
+    """
+    run_time: list = list()
+    for i in range(nb_iteration):
+        start = time.time()
+        algorithm(game_data1)
+        end = time.time()
+        run_time.append(end - start)
+
+    # Calcule la moyenne des temps d'exécution
+    average_time_run = sum(run_time) / len(run_time)
+
+    print("Average run time : ", average_time_run)
