@@ -26,6 +26,7 @@ def algo_calculation(numbers: list, target: int) -> str:
     """
     response: str = ""
     for subset in subset_sum(numbers, target):
+        subset.sort()
         result: str = "\""
         for i in subset:
             x: str = str(i)
