@@ -4,12 +4,13 @@ from script import algo_duplication
 from script import algo_frequency
 from script import algo_missing
 from script import algo_calculation
+from script import algo_reasoning
 
 if __name__ == '__main__':
     game_type: str = ""
     game_data1 = None
     game_data2 = None
-    card: dict = basic_fonction.open_json_card("card-3")  # 14
+    card: dict = basic_fonction.open_json_card("card-16")  # 14
 
     game_type, game_data1, game_data2 = basic_fonction.recovery_data_card(card, game_type, game_data1, game_data2)
 
@@ -23,3 +24,5 @@ if __name__ == '__main__':
         algo_missing.algo_missing(game_data1)
     if game_type == "calcul":
         algo_calculation.algo_calculation(game_data1, game_data2)
+    if game_type == "raisonnement":
+        algo_reasoning.algo_reasoning(game_data1,game_data2)
