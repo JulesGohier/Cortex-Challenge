@@ -52,9 +52,9 @@ def compare_keys_values(dictionary: dict) -> str:
     for key, value in dictionary.items():
         if key == value:
             new_key: str = translate_word(key, "fr", "en")
-            return print(new_key)
+            return new_key
 
-    return print("No value found")
+    return "No value found"
 
 
 def algo_color(dictionary_card: dict) -> str:

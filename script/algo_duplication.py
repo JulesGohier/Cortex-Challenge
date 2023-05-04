@@ -35,4 +35,4 @@ def algo_duplication(card_list: list):
     cnt = frequency(card_list)
     for word, occurrence in cnt.items():
         if occurrence == 2:
-            return print(word)
+            return word

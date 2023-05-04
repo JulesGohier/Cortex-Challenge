@@ -19,7 +19,7 @@ def less_common(cnt: list):
     :return: least_common element
     """
     least_common = cnt.most_common()[-1]
-    return print(least_common[0])
+    return least_common[0]
 
 
 def algo_frequency(card_list: list):
@@ -32,6 +32,6 @@ def algo_frequency(card_list: list):
     complete_list = extend_list(card_list)
     for word in complete_list:
         cnt[word] += 1
-    less_common(cnt)
+    return less_common(cnt)
 
 

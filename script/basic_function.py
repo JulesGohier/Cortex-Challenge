@@ -25,11 +25,11 @@ def recovery_data_card(card: dict):
     """
     data_card: list = list(card)
 
-    game_type: str = card[data_card[1]] # game_type: Variable containing the type of games
-    game_data1 = card[data_card[2]] # game_data1: Variable containing the first part game data
+    game_type: str = card[data_card[1]]  # game_type: Variable containing the type of games
+    game_data1 = card[data_card[2]]  # game_data1: Variable containing the first part game data
 
     if len(card) > 3:
-        game_data2 = card[data_card[3]] # game_data2: Variable containing the second part of game data, if it exists
+        game_data2 = card[data_card[3]]  # game_data2: Variable containing the second part of game data, if it exists
     else:
         game_data2 = ""
     return game_type, game_data1, game_data2
@@ -39,10 +39,11 @@ def calculate_time_execution(algorithm, game_data1, nb_iteration: int):
     """
     Function to calculate the average execution time for a number of iterations
     :param algorithm: Algorithm to be tested
-    :param game_data1: Parameter of the algorithm
+    :param game_data1: First parameter of the algorithm
     :param nb_iteration: Number of test iterations
     :return: Average time
     """
+
     run_time: list = list()
     for i in range(nb_iteration):
         start = time.time()
@@ -50,7 +51,26 @@ def calculate_time_execution(algorithm, game_data1, nb_iteration: int):
         end = time.time()
         run_time.append(end - start)
 
-    # Calcul the average time of execution
+    average_time_run = sum(run_time) / len(run_time)
+
+    print("Average run time : ", average_time_run)
+
+def calculate_time_execution2(algorithm, game_data1, game_data2, nb_iteration: int):
+    """
+    Function to calculate the average execution time for a number of iterations
+    :param algorithm: Algorithm to be tested
+    :param game_data1: First parameter of the algorithm
+    :param nb_iteration: Number of test iterations
+    :return: Average time
+    """
+
+    run_time: list = list()
+    for i in range(nb_iteration):
+        start = time.time()
+        algorithm(game_data1, game_data2)
+        end = time.time()
+        run_time.append(end - start)
+
     average_time_run = sum(run_time) / len(run_time)
 
     print("Average run time : ", average_time_run)

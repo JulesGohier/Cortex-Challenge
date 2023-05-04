@@ -2,7 +2,7 @@ def sort_and_find(sequence: list) -> int:
     """
     Function which sort a list of numbers into a sequence and find the missing number if any
     :param sequence: a list of numbers in disorder
-    :return: nothing if the sequence is complete, the missing number of the sequence
+    :return: nothing if the sequence is complete, the missing number of the sequence otherwise
     """
     sequence.sort()
     x: int = int(sequence[0])
@@ -10,7 +10,7 @@ def sort_and_find(sequence: list) -> int:
     for i in sequence:
         i: int = int(i)
         if i != x:
-            return print(x)
+            return x
         x = x + 1
 
 
@@ -27,5 +27,7 @@ def algo_missing(sequences_list: list) -> int:
             r.append(i[:-1])
         else:
             b.append(i[:-1])
-    sort_and_find(r)
-    sort_and_find(b)
+    if sort_and_find(r) is not None:
+        return sort_and_find(r)
+    elif sort_and_find(b) is not None:
+        return sort_and_find(b)
