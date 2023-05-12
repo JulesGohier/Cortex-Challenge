@@ -19,7 +19,6 @@ def y_end(matrix):
         for j in range(cols-1, -1, -1):
             if matrix[i][j] != 'X':
                 return j
-    print("-1")
 
 
 def x_end(matrix):
@@ -29,15 +28,12 @@ def x_end(matrix):
         for i in range(rows-1, -1, -1):
             if matrix[i][j] != 'X':
                 return i
-    print("-1")
 
 
-def compare_size(matrix1, matrix2, x0, y0):
-    length1 = x_end(matrix1) - x0 + 1
-    width1 = y_end(matrix1) - y0 + 1
-    length2 = len(matrix2)
-    width2 = len(matrix2[0])
-    if length1 == length2 and width1 == width2:
+def compare_size(matrix2, length_matrix1, width_matrix1):
+    length_matrix2 = len(matrix2)
+    width_matrix2 = len(matrix2[0])
+    if length_matrix1 == length_matrix2 and width_matrix1 == width_matrix2:
         return True
     else:
         return False
@@ -58,15 +54,20 @@ def algo_reasoning(matrix: list, piece: dict):
     cols = len(matrix[0])
     x0 = x_start(matrix, rows, cols)
     y0 = y_start(matrix, rows, cols)
+    length_matrix = x_end(matrix) - x0 + 1
+    width_matrix = y_end(matrix) - y0 + 1
 
-    if fits_in(matrix, piece["A"], x0, y0):
-        if compare_size(matrix, piece["A"], x0, y0):
+    #lenght_piece = len(piece["A"])
+    #width_piece = len(piece["A"][0])
+
+    if compare_size(piece["A"], length_matrix, width_matrix):
+        if fits_in(matrix, piece["A"], x0, y0):
             return "A"
-    if fits_in(matrix, piece["B"], x0, y0):
-        if compare_size(matrix, piece["B"], x0, y0):
+    if compare_size(piece["B"], length_matrix, width_matrix):
+        if fits_in(matrix, piece["B"], x0, y0):
             return "B"
-    if fits_in(matrix, piece["C"], x0, y0):
-        if compare_size(matrix, piece["C"], x0, y0):
+    if compare_size(piece["C"], length_matrix, width_matrix):
+        if fits_in(matrix, piece["C"], x0, y0):
             return "C"
     else:
         return "None"

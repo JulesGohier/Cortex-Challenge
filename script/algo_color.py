@@ -29,39 +29,13 @@ def translate_word(word: str, la1: str, la2: str) -> str:
     return new_key
 
 
-def translate_dictionary_keys(dictionary_to_translate: dict) -> dict:
-    """
-    A function that translate all the key of a dictionary if they are not, and return a new dictionary
-    :param dictionary_to_translate:
-    :return: the dictionary with all his pairs key-value translated in english
-    """
-    dictionary_translated: dict = {}
-    for key, value in dictionary_to_translate.items():
-        new_key: str = translate_word(key, "en", "fr")
-        dictionary_translated[new_key] = value
-
-    return dictionary_translated
-
-
-def compare_keys_values(dictionary: dict) -> str:
-    """
-    A function that compares each key-value pair and return the key which is identical with its value
-    :param dictionary: Dictionary whose key-value pairs have to be compared
-    :return: The key of the pair which is identical
-    """
-    for key, value in dictionary.items():
-        if key == value:
-            new_key: str = translate_word(key, "fr", "en")
-            return new_key
-
-    return "No value found"
-
-
 def algo_color(dictionary_card: dict) -> str:
     """
-    This function allows you to solve the colour challenge
-    :param dictionary_card: the dictionary from the challenge card selected
-    :return: The word or key of the element that is identical in both dictionaries
+    Compares each key-value pair (with the key translated in english) and returns the key which is identical with value
+    :param dictionary_card: Dictionary whose key-value pairs have to be compared
+    :return: The key of the pair which is identical to its value
     """
-    dictionary_translated = translate_dictionary_keys(dictionary_card)
-    return compare_keys_values(dictionary_translated)
+    for key, value in dictionary_card.items():
+        key_translated = translate_word(key, "en", "fr")
+        if key_translated == value:
+            return key

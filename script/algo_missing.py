@@ -6,7 +6,6 @@ def sort_and_find(sequence: list) -> int:
     """
     sequence.sort()
     x: int = int(sequence[0])
-
     for i in sequence:
         i: int = int(i)
         if i != x:
@@ -27,7 +26,16 @@ def algo_missing(sequences_list: list) -> int:
             r.append(i[:-1])
         else:
             b.append(i[:-1])
-    if sort_and_find(r) is not None:
-        return sort_and_find(r)
-    elif sort_and_find(b) is not None:
-        return sort_and_find(b)
+
+    if len(r) <= len(b):
+        missing_r = sort_and_find(r)
+        if missing_r is not None:
+            return missing_r
+        else:
+            return sort_and_find(b)
+    else:
+        missing_b = sort_and_find(b)
+        if missing_b is not None:
+            return missing_b
+        else:
+            return sort_and_find(r)

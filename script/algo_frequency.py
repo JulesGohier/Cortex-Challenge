@@ -1,37 +1,22 @@
+"""Optimisation du code --> utilisation de itertools plutot que extend """
 from collections import Counter
+from itertools import chain
 
 
-def extend_list(list_of_lists: list) -> list:
+def least_common(cnt: Counter):
     """
-    Function that concatenate a list of lists into a unique list
-    :param list_of_lists: it's pretty explicit, isn't it?
-    :return: a list with all the value of all the precedent lists
+    Function that returns the least common element of a counter dict (cnt)
+    :param cnt: dict with words as keys and their occurrences as values
+    :return: least common element of the counter dict
     """
-    unique_list: list = []
-    for sublist in list_of_lists:
-        unique_list.extend(sublist)
-    return unique_list
-
-
-def less_common(cnt: list):
-    """
-    Function that return the less common element of a counter dict (cnt)
-    :return: least_common element
-    """
-    least_common = cnt.most_common()[-1]
-    return least_common[0]
+    return min(cnt, key=cnt.get)
 
 
 def algo_frequency(card_list: list):
     """
-    Function which groups all the words and their occurrence in a dict (cnt) and return its least common element
+    Function which groups all the words and their occurrence in a dict (cnt) and returns its least common element
     :param card_list: a list of lists which contains the words (game_data)
-    :return:
+    :return: the least common element
     """
-    cnt: dict = Counter()
-    complete_list = extend_list(card_list)
-    for word in complete_list:
-        cnt[word] += 1
-    return less_common(cnt)
-
-
+    cnt: Counter = Counter(chain.from_iterable(card_list))
+    return least_common(cnt)
