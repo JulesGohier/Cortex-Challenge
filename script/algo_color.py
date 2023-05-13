@@ -1,5 +1,6 @@
 """ This python program allows to solve the color challenge of the cortex game """
 
+
 def compare_dictionary(dict1: dict, dict2: dict):
     """
     A function that compares two dictionaries and outputs the key of the element identical to the two dictionaries
@@ -8,10 +9,8 @@ def compare_dictionary(dict1: dict, dict2: dict):
     :return: The key of the element identical to the two dictionaries
     """
     for key, value in dict1.items():
-        if dict1[key] == dict2[key]:
-            return print(key)
-
-    return print("No value found")
+        if value == dict2[key]:
+            return key
 
 
 def algo_color(dictionary_input: dict):
@@ -59,5 +58,4 @@ def algo_color(dictionary_input: dict):
         "green": "green",
     }
 
-    dictionary_card: dict = dictionary_input
-    compare_dictionary(dictionary_card, dictionary_pattern)
+    return compare_dictionary(dictionary_input, dictionary_pattern)

@@ -1,7 +1,7 @@
 def search_missing(number_element: int, number_list: list):
     """
     Function to find a missing element in a sequence using an arithmetic equation
-    :param number_element: Number of items on the list
+    :param number_element: Number of items in the list
     :param number_list: List containing the sequence
     :return: Return the missing element if it is in the sequence if not return false
     """
@@ -23,7 +23,7 @@ def split_list(number_list: list, list1: list, list2: list):
     :return: Both lists completed
     """
     for element in number_list:
-        if 'R' in element:
+        if element[-1] == 'R':
             list1.append(int(element[:-1]))
         else:
             list2.append(int(element[:-1]))
@@ -51,7 +51,7 @@ def algo_missing(number_list: list):
             return resultat
         else:
             return search_missing(nB, listB)
-    elif nR > nB or nR == nB:
+    else:
         resultat = search_missing(nB, listB)
         if resultat:
             return resultat
