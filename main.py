@@ -21,7 +21,7 @@ if __name__ == '__main__':
         print(algo_color.algo_color(game_data1))
         basic_function.calculate_time_execution(algo_color.algo_color, game_data1, game_data2, 100000)
 
-    if game_type == "réflection":
+    if game_type == "réflexion":
         print(algo_reflection.algo_reflection(game_data1))
         basic_function.calculate_time_execution(algo_reflection.algo_reflection, game_data1, game_data2, 1000)
 
