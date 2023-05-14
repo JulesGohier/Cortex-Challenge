@@ -1,7 +1,7 @@
-def algo_calculation(number_find: int, number_list: list):
+def algo_calculate(number_find: int, number_list: list):
     """
     A function that allows finding the addition sequence for the "number_find" bet the numbers of the sequence
-    "number_list" (inspired by the algortihme on backpack)
+    "number_list" (inspired by the backpack algorithm)
     :param number_find: Number to search
     :param number_list: List of start numbers
     :return: A string of characters where the numbers appear in ascending order and are separated by the + sign.

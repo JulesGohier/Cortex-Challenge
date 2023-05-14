@@ -33,22 +33,26 @@ def recovery_data_card(card: dict, game_type: str, game_data1, game_data2):
     if len(card) > 3:
         game_data2 = card[data_card[3]]
     else:
-        game_data2 = ""
+        game_data2 = None
     return game_type, game_data1, game_data2
 
 
-def calculate_time_execution(algorithm, game_data1, nb_iteration: int):
+def calculate_time_execution(algorithm, game_data1, game_data2,  nb_iteration: int):
     """
     Function to calculate the average execution time for a number of iterations
     :param algorithm: Algorithm to be tested
-    :param game_data1: Parameter of the agorithm
+    :param game_data1: First parameter of the algorithm
+    :param game_data2: Second parameter of the algorithm
     :param nb_iteration: Number of test iterations
     :return: Average time
     """
     run_time: list = list()
     for i in range(nb_iteration):
         start = time.time()
-        algorithm(game_data1)
+        if game_data2 is not None:
+            algorithm(game_data1, game_data2)
+        else:
+            algorithm(game_data1)
         end = time.time()
         run_time.append(end - start)
 

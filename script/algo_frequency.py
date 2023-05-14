@@ -21,3 +21,7 @@ def algo_frequency(list_input: list):
             text_key = key
 
     return text_key
+
+    """sorted_list = sorted(dictionary.items(), key=lambda x: x[1])
+
+    return sorted_list[0][0]"""
