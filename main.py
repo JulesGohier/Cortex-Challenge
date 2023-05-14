@@ -1,6 +1,6 @@
 from script import basic_function
 from script import algo_color
-# from script import algo_reflection
+from script import algo_reflection
 from script import algo_calculate
 from script import algo_frequency
 from script import algo_missing
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     game_type: str = ""
     game_data1 = None
     game_data2 = None
-    card: dict = basic_function.open_json_card("card-16")
+    card: dict = basic_function.open_json_card("card-2")
 
     game_type, game_data1, game_data2 = basic_function.recovery_data_card(card)
 
@@ -23,9 +23,9 @@ if __name__ == '__main__':
         print(algo_color.algo_color(game_data1))
         basic_function.calculate_time_execution(algo_color.algo_color, game_data1, game_data2, 2)
 
-    if game_type == "réflection":
+    if game_type == "réflexion":
         print(algo_reflection.algo_reflection(game_data1))
-        basic_function.calculate_time_execution(algo_reflection.algo_reflection, game_data1, game_data2, 1000)
+        basic_function.calculate_time_execution(algo_reflection.algo_reflection, game_data1, game_data2, 10000)
 
     if game_type == "calcul":
         print(algo_calculate.algo_calculate(game_data1, game_data2))
