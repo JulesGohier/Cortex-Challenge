@@ -48,7 +48,7 @@ def algo_labyrinth(matrix):
         x, y = stack.pop()  # Take the last cell from the stack
 
         if matrix[x][y] in ('1', '2', '3', '4'):  # If we reach the exit, returns its coordinates
-            return x, y
+            return matrix[x][y]
         visited.add((x, y))  # Otherwise, mark the cell as visited and add the boundary cells to the stack
 
         for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
