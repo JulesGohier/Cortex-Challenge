@@ -4,16 +4,15 @@ from script import algo_reflection
 from script import algo_calculate
 from script import algo_frequency
 from script import algo_missing
-# from script import algo_labyrinth
+from script import algo_labyrinth
 from script import algo_duplication
 from script import algo_reasoning
-from script import test
 
 if __name__ == '__main__':
     game_type: str = ""
     game_data1 = None
     game_data2 = None
-    card: dict = basic_function.open_json_card("card-16")  # 14
+    card: dict = basic_function.open_json_card("card-1")  # 14
 
     game_type, game_data1, game_data2 = basic_function.recovery_data_card(card, game_type, game_data1, game_data2)
 
@@ -48,7 +47,3 @@ if __name__ == '__main__':
     if game_type == "raisonnement":
         print(algo_reasoning.algo_reasoning(game_data1, game_data2))
         basic_function.calculate_time_execution(algo_reasoning.algo_reasoning, game_data1, game_data2, 100000)
-
-    if game_type == "calcul":
-        print(test.test(game_data1, game_data2))
-        basic_function.calculate_time_execution(test.test, game_data1, game_data2, 1000)
