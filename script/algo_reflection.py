@@ -1,23 +1,20 @@
-def more_near(value: int, list: list, interval: tuple):
+def more_near(value: int, list: list):
     """
     This function allows one to find the closest value to another one contained in a list and in a precise interval.
     :param value: Reference value
     :param list: List of values to test
-    :param interval: Interval to be respected
-    :return: Returns the value closest to the reference value and within the range
+    :return: Returns the value closest to the reference value
     """
+    list_set = set(list)
     mini: float = float('inf')
     result: int = 0
-    for i in list:
-        if interval[0] <= i <= interval[1]:
-            diff = abs(i - value)
-            if diff < mini:
-                mini = diff
-                result = i
+    for num in list_set:
+        diff = abs(num - value)
+        if diff < mini:
+            mini = diff
+            result = num
 
     return result
-
-
 def vertical_search(input_list: list, position: tuple, symbol: str, interval: tuple):
     """
     This function allows searching for mirrors in a column of the matrix
@@ -27,15 +24,15 @@ def vertical_search(input_list: list, position: tuple, symbol: str, interval: tu
     :param interval: Search interval
     :return: Return the position of the new point and its symbol, a boolean to check if there is a mirror
     """
-    input_list_length: int = len(input_list)
     mirror_find: list = []
-    for i in range(input_list_length):
-        if input_list[i][0][1] == position[1] and input_list[i][0] != position:
-            mirror_find.append(input_list[abs(i)])
+    for i in input_list:
+        if i[0][1] == position[1] and i[0] != position and interval[0] <= i[0][0] <= \
+                interval[1]:
+            mirror_find.append(i)
 
     mirror_find_length: int = len(mirror_find)
     if mirror_find_length >= 2:
-        posx = more_near(position[0], [mirror_find[i][0][0] for i in range(mirror_find_length)], interval)
+        posx = more_near(position[0], [i[0][0] for i in mirror_find])
         if posx == None:
             return position, symbol, False
         for i in mirror_find:
@@ -60,16 +57,16 @@ def horizontal_search(input_list: list, position: tuple, symbol: str, interval: 
     :param interval: Search interval
     :return: Return the position of the new point and its symbol, a boolean to check if there is a mirror
     """
-    input_list_length: int = len(input_list)
     mirror_find: list = []
-    for i in range(input_list_length):
-        if input_list[i][0][0] == position[0] and input_list[i][0] != position and interval[0] <= input_list[i][0][1] <= \
+
+    for i in input_list:
+        if i[0][0] == position[0] and i[0] != position and interval[0] <= i[0][1] <= \
                 interval[1]:
-            mirror_find.append(input_list[abs(i)])
+            mirror_find.append(i)
     mirror_find_length: int = len(mirror_find)
 
     if mirror_find_length >= 2:
-        posy = more_near(position[1], [mirror_find[i][0][1] for i in range(mirror_find_length)], interval)
+        posy = more_near(position[1], [i[0][1] for i in mirror_find])
         if posy == None:
             return position, symbol, False
         for i in mirror_find:
@@ -93,8 +90,8 @@ def algo_reflection(matrix: list):
     """
     mirror_find_list: list = []
     symbol: list = ["/", "\\"]
-    for row in range(1, 5):
-        for col in range(1, 5):
+    for row in range(1,5):
+        for col in range(1,5):
             if matrix[row][col] in symbol:
                 mirror_find_list.append(((row, col), matrix[row][col]))
     current_position: tuple = (5, 2)
@@ -108,7 +105,6 @@ def algo_reflection(matrix: list):
         previous_position = position_temporary
 
     while end is not False:
-        print(previous_position,"-----",current_position)
         if (previous_position[0] < current_position[0] and current_symbol == "\\") or (previous_position[0] > current_position[0] and current_symbol == "/"):
             position_temporary = current_position
             current_position, current_symbol, end = horizontal_search(mirror_find_list, current_position, current_symbol,(current_position[1], 5))
@@ -129,15 +125,17 @@ def algo_reflection(matrix: list):
         elif (previous_position[1] < current_position[1] and current_symbol == "/") or (
                 previous_position[1] > current_position[1] and current_symbol == "\\"):
             position_temporary = current_position
-            current_position, current_symbol, end = vertical_search(mirror_find_list, current_position, current_symbol,(current_position[0], 0))
+            current_position, current_symbol, end = vertical_search(mirror_find_list, current_position, current_symbol,(0, current_position[0]))
             if end:
                 previous_position = position_temporary
 
-    if previous_position[1] > current_position[1]:
+    if current_symbol == "L":
+        return matrix[0][2]
+    elif previous_position[1] > current_position[1]:
         if current_symbol == "/":
             return matrix[5][current_position[1]]
         elif current_symbol == "\\":
-            return matrix[0][current_position[0]]
+            return matrix[0][current_position[1]]
 
     elif previous_position[1] < current_position[1]:
         if current_symbol == "/":
