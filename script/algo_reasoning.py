@@ -6,10 +6,10 @@ def y_start(matrix, rows, cols):
     :param cols: numbers of cols in the matrix
     :return: y start
     """
-    for i in range(rows):
-        for j in range(cols):
-            if matrix[i][j] != 'X':
-                return j
+    for y in range(rows):
+        for x in range(cols):
+            if matrix[y][x] != 'X':
+                return y
 
 
 def x_start(matrix, rows, cols):
@@ -20,10 +20,10 @@ def x_start(matrix, rows, cols):
     :param cols: numbers of cols in the matrix
     :return: x start
     """
-    for j in range(cols):
-        for i in range(rows):
-            if matrix[i][j] != 'X':
-                return i
+    for x in range(cols):
+        for y in range(rows):
+            if matrix[y][x] != 'X':
+                return x
 
 
 def y_end(matrix, rows, cols):
@@ -34,10 +34,10 @@ def y_end(matrix, rows, cols):
     :param cols: numbers of cols in the matrix
     :return: y end
     """
-    for i in range(rows-1, -1, -1):
-        for j in range(cols-1, -1, -1):
-            if matrix[i][j] != 'X':
-                return j
+    for y in range(rows-1, -1, -1):
+        for x in range(cols-1, -1, -1):
+            if matrix[y][x] != 'X':
+                return y
 
 
 def x_end(matrix, rows, cols):
@@ -48,10 +48,10 @@ def x_end(matrix, rows, cols):
     :param cols: numbers of cols in the matrix
     :return: x end
     """
-    for j in range(cols-1, -1, -1):
-        for i in range(rows-1, -1, -1):
-            if matrix[i][j] != 'X':
-                return i
+    for x in range(cols-1, -1, -1):
+        for y in range(rows-1, -1, -1):
+            if matrix[y][x] != 'X':
+                return x
 
 
 def compare_size(matrix2, length_matrix1, width_matrix1):
@@ -62,8 +62,9 @@ def compare_size(matrix2, length_matrix1, width_matrix1):
     :param width_matrix1: piece length acceptable by the drawing
     :return: boolean
     """
-    length_matrix2 = len(matrix2)
-    width_matrix2 = len(matrix2[0])
+    width_matrix2 = len(matrix2)
+    length_matrix2 = len(matrix2[0])
+    print(length_matrix1, length_matrix2, width_matrix1, width_matrix2)
     if length_matrix1 == length_matrix2 and width_matrix1 == width_matrix2:
         return True
     else:
@@ -79,11 +80,11 @@ def fits_in(matrix1, matrix2, x0, y0):
     :param y0: locate where the piece inserts in the drawing
     :return: boolean
     """
-    rows2 = len(matrix2)
-    cols2 = len(matrix2[0])
-    for i in range(rows2):
-        for j in range(cols2):
-            if matrix1[i + x0][j + y0] == matrix2[i][j]:
+    cols2 = len(matrix2)
+    rows2 = len(matrix2[0])
+    for j in range(rows2):
+        for i in range(cols2):
+            if matrix1[i + y0][j + x0] == matrix2[i][j]:
                 return False
     return True
 
@@ -100,6 +101,11 @@ def algo_reasoning(matrix: list, piece: dict):
     cols = len(matrix[0])
     x0 = x_start(matrix, rows, cols)
     y0 = y_start(matrix, rows, cols)
+
+    x_e = x_end(matrix, rows, cols)
+    y_e = y_end(matrix, rows, cols)
+    print(x0, y0, x_e, y_e)
+
     length_matrix = x_end(matrix, rows, cols) - x0 + 1  # enlever les variables x0 et y0
     width_matrix = y_end(matrix, rows, cols) - y0 + 1
 
