@@ -10,9 +10,6 @@ from script import algo_reasoning
 
 
 if __name__ == '__main__':
-    # game_type: str = ""
-    # game_data1 = None
-    # game_data2 = None
     card: dict = basic_function.open_json_card("card-7")
 
     game_type, game_data1, game_data2 = basic_function.recovery_data_card(card)
