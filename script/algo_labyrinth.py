@@ -42,7 +42,7 @@ def algo_labyrinth(matrix):
     stack = deque([start_point])
     visited = set()
 
-    rows, cols = len(matrix), len(matrix[0])
+    rows, cols = len(matrix), len(matrix[0])  # int
 
     while stack:
         x, y = stack.pop()  # Take the last cell from the stack

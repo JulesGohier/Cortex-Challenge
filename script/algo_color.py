@@ -1,41 +1,61 @@
 """ This python program allows to solve the color challenge of the cortex game """
-from googletrans import Translator
-
-"""
-DISCLAIMER : you need to replace the line 222 of googletrans/client.py with :
-
-try:
-translated_parts=list(map(lambda part: TranslatedPart(part[0], part[1] if len(part) >= 2 else []), parsed[1][0][0][5]))
-except TypeError: # because of the gender-specific translate results
-    translated_parts = [ TranslatedPart(parsed[1][0][1][0], [parsed[1][0][0][0], parsed[1][0][1][0]]) ]
-    
-"""
 
 
-translator = Translator()
-
-
-def translate_word(word: str, la1: str, la2: str) -> str:
+def compare_dictionary(dict1: dict, dict2: dict):
     """
-    A function that translate a word from a targeted language to the desired language
-    :param word: word to translate
-    :param la1: language to translate into
-    :param la2: language source
-    :return: the word translated in the desired language
+    A function that compares two dictionaries and outputs the key of the element identical to the two dictionaries
+    :param dict1: Dictionary to search
+    :param dict2: Dictionary to compare
+    :return: The key of the element identical to the two dictionaries
     """
-    translation = translator.translate(word, dest=la1, src=la2)
-    new_key: str = translation.text
-    new_key = new_key.lower()
-    return new_key
-
-
-def algo_color(dictionary_card: dict) -> str:
-    """
-    Compares each key-value pair (with the key translated in english) and returns the key which is identical with value
-    :param dictionary_card: Dictionary whose key-value pairs have to be compared
-    :return: The key of the pair which is identical to its value
-    """
-    for key, value in dictionary_card.items():
-        key_translated = translate_word(key, "en", "fr")
-        if key_translated == value:
+    for key, value in dict1.items():
+        if value == dict2[key]:
             return key
+
+
+def algo_color(dictionary_input: dict):
+    """
+    This function allows you to solve the colour challenge
+    :param dictionary_input: Dictionary where you have to look for
+    :return: The word or key of the element that is identical in both dictionaries
+    """
+    dictionary_pattern: dict = {
+        "argent": "silver",
+        "beige": "beige",
+        "blanc": "white",
+        "bleu": "blue",
+        "corail": "coral",
+        "indigo": "indigo",
+        "jaune": "yellow",
+        "lavande": "lavender",
+        "magenta": "magenta",
+        "marron": "brown",
+        "mauve": "purple",
+        "noir": "black",
+        "olive": "olive",
+        "or": "gold",
+        "orange": "orange",
+        "orchidée": "orchid",
+        "rose": "pink",
+        "rouge": "red",
+        "saumon": "salmon",
+        "vert": "green",
+
+        "silver": "silver",
+        "white": "white",
+        "blue": "blue",
+        "coral": "coral",
+        "yellow": "yellow",
+        "lavender": "lavender",
+        "brown": "brown",
+        "purple": "purple",
+        "black": "black",
+        "gold": "gold",
+        "orchid": "orchid",
+        "pink": "pink",
+        "red": "red",
+        "salmon": "salmon",
+        "green": "green",
+    }
+
+    return compare_dictionary(dictionary_input, dictionary_pattern)

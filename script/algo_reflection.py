@@ -64,10 +64,11 @@ def algo_reflection(matrix: list):
     :param matrix: map with a lamp (L)(=light beam start), numbers (1-15) and mirrors (/ and \\)
     :return: number reached by the light beam
     """
-    y, x = 5, 2
-    cell = matrix[y][x]
-    light_direction = "North"
-    result = ''
+    y, x = 5, 2  # int
+    cell: str = matrix[y][x]
+    light_direction: str = "North"
+    result: str = ''
+
     while result == '':
         while cell in ('', "L"):
 

@@ -19,7 +19,7 @@ def algo_duplication(card_list: list):
     Function that return the duplicate element (an element which appears exactly 2 times) of a counter dict (cnt)
     :return: duplicate element
     """
-    cnt = frequency(card_list)
+    cnt: dict = frequency(card_list)
     for word, occurrence in cnt.items():
         if occurrence == 2:
             return word

@@ -62,8 +62,8 @@ def compare_size(matrix2, length_matrix1, width_matrix1):
     :param width_matrix1: piece length acceptable by the drawing
     :return: boolean
     """
-    width_matrix2 = len(matrix2)
-    length_matrix2 = len(matrix2[0])
+    width_matrix2: int = len(matrix2)
+    length_matrix2: int = len(matrix2[0])
 
     if length_matrix1 == length_matrix2 and width_matrix1 == width_matrix2:
         return True
@@ -80,8 +80,8 @@ def fits_in(matrix1, matrix2, x0, y0):
     :param y0: locate where the piece inserts in the drawing
     :return: boolean
     """
-    cols2 = len(matrix2)
-    rows2 = len(matrix2[0])
+    cols2: int = len(matrix2)
+    rows2: int = len(matrix2[0])
     for j in range(rows2):
         for i in range(cols2):
             if matrix1[i + y0][j + x0] == matrix2[i][j]:
@@ -97,12 +97,12 @@ def algo_reasoning(matrix: list, piece: dict):
     :return: piece which fits in the drawing
     """
     # Find the starting and ending row and column indices of the '' characters in the matrix
-    rows = len(matrix)
-    cols = len(matrix[0])
-    x0 = x_start(matrix, rows, cols)
-    y0 = y_start(matrix, rows, cols)
-    length_matrix = x_end(matrix, rows, cols) - x0 + 1
-    width_matrix = y_end(matrix, rows, cols) - y0 + 1
+    rows: int = len(matrix)
+    cols: int = len(matrix[0])
+    x0: int = x_start(matrix, rows, cols)
+    y0: int = y_start(matrix, rows, cols)
+    length_matrix: int = x_end(matrix, rows, cols) - x0 + 1
+    width_matrix: int = y_end(matrix, rows, cols) - y0 + 1
 
     if compare_size(piece["A"], length_matrix, width_matrix):
         if fits_in(matrix, piece["A"], x0, y0):
