@@ -64,7 +64,7 @@ def compare_size(matrix2, length_matrix1, width_matrix1):
     """
     width_matrix2 = len(matrix2)
     length_matrix2 = len(matrix2[0])
-    print(length_matrix1, length_matrix2, width_matrix1, width_matrix2)
+
     if length_matrix1 == length_matrix2 and width_matrix1 == width_matrix2:
         return True
     else:
@@ -101,16 +101,8 @@ def algo_reasoning(matrix: list, piece: dict):
     cols = len(matrix[0])
     x0 = x_start(matrix, rows, cols)
     y0 = y_start(matrix, rows, cols)
-
-    x_e = x_end(matrix, rows, cols)
-    y_e = y_end(matrix, rows, cols)
-    print(x0, y0, x_e, y_e)
-
-    length_matrix = x_end(matrix, rows, cols) - x0 + 1  # enlever les variables x0 et y0
+    length_matrix = x_end(matrix, rows, cols) - x0 + 1
     width_matrix = y_end(matrix, rows, cols) - y0 + 1
-
-    # length_piece = len(piece["A"])
-    # width_piece = len(piece["A"][0])
 
     if compare_size(piece["A"], length_matrix, width_matrix):
         if fits_in(matrix, piece["A"], x0, y0):
