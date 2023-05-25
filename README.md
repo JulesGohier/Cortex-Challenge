@@ -17,8 +17,8 @@ translated_parts=list(map(lambda part: TranslatedPart(part[0], part[1] if len(pa
 except TypeError: # because of the gender-specific translate results
     translated_parts = [ TranslatedPart(parsed[1][0][1][0], [parsed[1][0][0][0], parsed[1][0][1][0]]) ]
 ```
+ 
 
-
-### [Link GitHub Project](https://github.com/JulesGohier/Cortex-Challenge)
+### [Link GitHub Website](https://github.com/JulesGohier/Cortex-Challenge-Website)
 
 ### [Link Website](https://leria-etud.univ-angers.fr/~jugohier/)
