@@ -21,4 +21,4 @@ except TypeError: # because of the gender-specific translate results
 
 ### [Link GitHub Website](https://github.com/JulesGohier/Cortex-Challenge-Website)
 
-### [Link Website](https://leria-etud.univ-angers.fr/~jugohier/)
+### [Link Website](https://leria-etud.univ-angers.fr/~jugohier/cortex_challenge)
